@@ -84,7 +84,7 @@ plot(mtcars$hp, mtcars$drat,
      col = "red",
      main = "RAR as a Function of horsepower",
      ylab = "number of spins",
-     xlab = "bumber of horsepower")
+     xlab = "number of horsepower")
 
 cor.test(mtcars$hp, mtcars$drat)
 
