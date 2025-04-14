@@ -6,6 +6,9 @@ library(dplyr)
 link <- "https://www.filmweb.pl/ranking/serial"
 page <- read_html(link)
 
+# Id
+id <- page %>% html_nodes(".rankingType__position") %>% html_text()
+
 # Nazwa serialu
 name <- page %>% html_nodes(".rankingType__title a") %>% html_text()
 
@@ -21,6 +24,7 @@ rating_number <- page %>% html_nodes(".rankingType__rate--count span:nth-child(1
 # Gatunek
 genre <- page %>% html_nodes("strong+ .rankingGerne span") %>% html_text()
 
+length(id)
 length(name)
 length(year)
 length(rating)
@@ -28,6 +32,7 @@ length(rating_number)
 length(genre)
 
 tvseries <- data.frame(
+  id = id,
   name = name,
   year = year,
   rating = rating,
