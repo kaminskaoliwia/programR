@@ -10,4 +10,4 @@ Repozytorium do zajęć z Programowania w [języku R](https://www.r-project.org/
   - Zapytania
 
 ### :bar_chart: Przykładowy wykres wygenerowany w ramach projektu: 
-![drat_density](https://github.com/user-attachments/assets/81775c3f-71ab-4a49-b456-cc20c2630a55)
+<img src="https://github.com/user-attachments/assets/81775c3f-71ab-4a49-b456-cc20c2630a55" width="600" height="450"/>
