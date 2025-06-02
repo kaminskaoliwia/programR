@@ -44,11 +44,13 @@ sklep1 <- sklep %>% filter(sklep$liczba_klientow >= lower_lk & sklep$liczba_klie
 
 hist(sklep$liczba_klientow,
      main = "Liczba klientów - przed usuniêciem outlierów",
-     col = "thistle1")
+     col = "thistle1",
+     ylab = "Liczba klientów")
 
 hist(sklep1$liczba_klientow,
      main = "Liczba klientów - po usuniêciu outlierów",
-     col = "thistle1")
+     col = "thistle1",
+     ylab = "Liczba klientów")
 
 # Sprzeda¿
 boxplot(sklep$sprzedaz,
@@ -68,11 +70,13 @@ sklep2 <- sklep1 %>% filter(sprzedaz >= lower_s & sprzedaz <= upper_s)
 
 hist(sklep$sprzedaz,
      main = "Sprzeda¿ - przed usuniêciem outlierów",
-     col = "thistle1")
+     col = "thistle1",
+     ylab = "Przychód")
 
 hist(sklep2$sprzedaz,
      main = "Sprzeda¿ - po usuniêciu outlierów",
-     col = "thistle1")
+     col = "thistle1",
+     ylab = "Przychód")
 
 # Statystyki 
 summary(sklep2$liczba_klientow)
