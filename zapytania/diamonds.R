@@ -1,11 +1,11 @@
 
 install.packages("readxl")
 
-nycflights <- read.csv("C:/Users/kamin/Desktop/studia_repo/programR/zapytania/nycflights.csv", header = TRUE)
+nycflights <- read.csv("nycflights.csv", header = TRUE)
 View(nycflights)
 
 library(readxl)
-diamonds <- read_excel("C:/Users/kamin/Desktop/studia_repo/programR/zapytania/diamonds.xlsx")
+diamonds <- read_excel("diamonds.xlsx")
 
 str(diamonds)
 
