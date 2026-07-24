@@ -7,11 +7,11 @@ library(summarytools)
 library(corrplot)
 
 # Wczytanie danych
-titanic <- read.csv("C:\\Users\\kamin\\Desktop\\studia_repo\\programR\\proj3\\titanic_new.csv")
+titanic <- read.csv("titanic_new.csv")
 head(titanic)
 names(titanic)
 
-# Usuniêcie danych nieistotnych
+# UsuniÄ™cie danych nieistotnych
 titanic1 = subset(titanic, select = -c(Passenger.Id, Name, Fare, Cabin, Ticket, SibSp, Parch))
 names(titanic1)
 
@@ -27,7 +27,7 @@ titanic1 <- titanic1 %>%
                       "malwe" = "male"))
 table(titanic1$Sex)
 
-# Znalezienie b³êdnych danych SURVIVED
+# Znalezienie bÅ‚Ä™dnych danych SURVIVED
 table(titanic1$Survived)
 titanic1 <- titanic1 %>% filter(Survived %in% c(0,1))
 
@@ -41,17 +41,17 @@ table(titanic1$Embarked)
 View(titanic1 %>% filter(is.na(Age)))
 names(titanic1)
 
-# Szukanie outlierów
+# Szukanie outlierÃ³w
 boxplot(titanic1$Age,
-        main = "Czêstotliwoœæ wystêpowania wieku",
-        ylab = "Wiek pasa¿erów",
+        main = "CzÄ™stotliwoÅ›Ä‡ wystÄ™powania wieku",
+        ylab = "Wiek pasaÅ¼erÃ³w",
         col = "thistle1")
 
 hist(titanic1$Age,
      breaks = 20,
      col = "thistle1",
-     main = "Czêstotliwoœæ wystêpowania wieku",
-     xlab = "Wiek pasa¿erów")
+     main = "CzÄ™stotliwoÅ›Ä‡ wystÄ™powania wieku",
+     xlab = "Wiek pasaÅ¼erÃ³w")
 summary(titanic1$Age)
 
 Q1 <- quantile(titanic1$Age, 0.25, na.rm = TRUE)
@@ -65,11 +65,11 @@ upper_bound <- Q3 + 1.5 * IQR
 titanic1_nO <- titanic1 %>% filter(titanic1$Age >= lower_bound & titanic1$Age<= upper_bound)
 names(titanic1)
 
-# TITANIC1 Obliczamy œredni¹ wieku osobno dla kobiet i mê¿czyzn
+# TITANIC1 Obliczamy Å›redniÄ… wieku osobno dla kobiet i mÄ™Å¼czyzn
 femaleAge <- mean(titanic1 %>% filter(Sex == "female") %>% pull(Age), na.rm = TRUE)
 maleAge <- mean(titanic1 %>% filter(Sex == "male") %>% pull(Age), na.rm = TRUE)
 
-# Zastêpujemy brak wartoœci œredni¹
+# ZastÄ™pujemy brak wartoÅ›ci Å›redniÄ…
 titanic1 <- titanic1 %>%
   mutate(Age = ifelse(is.na(Age) & Sex == "male", maleAge,
                       ifelse(is.na(Age) & Sex == "female", femaleAge, Age)))
@@ -78,12 +78,12 @@ titanic1 <- titanic1 %>%
 femaleAge_nO <- mean(titanic1_nO %>% filter(Sex == "female") %>% pull(Age), na.rm = TRUE)
 maleAge_nO <- mean(titanic1_nO %>% filter(Sex == "male") %>% pull(Age), na.rm = TRUE)
 
-# Zastêpujemy brak wartoœci œredni¹
+# ZastÄ™pujemy brak wartoÅ›ci Å›redniÄ…
 titanic1_nO <- titanic1_nO %>%
   mutate(Age = ifelse(is.na(Age) & Sex == "male", maleAge,
                       ifelse(is.na(Age) & Sex == "female", femaleAge, Age)))
 
-# Porównujemy œrednie dla zawartoœci z outlierami i bez
+# PorÃ³wnujemy Å›rednie dla zawartoÅ›ci z outlierami i bez
 print(femaleAge)
 print(maleAge)
 print(femaleAge_nO)
